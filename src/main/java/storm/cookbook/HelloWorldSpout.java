@@ -32,6 +32,7 @@ public class HelloWorldSpout extends BaseRichSpout {
 		int instanceRandon = rand.nextInt(MAX_RADOM);
 		if (instanceRandon == referenceRadom) {
 			collector.emit(new Values("Hello World"));
+			System.out.println("++++++++++++++++++++emit Hello World");
 		}else {
 			collector.emit(new Values("OtherRandom Word"));
 		}

@@ -1,7 +1,5 @@
 package storm.cookbook;
 
-import java.io.IOException;
-
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.StormSubmitter;
@@ -17,14 +15,14 @@ public class HelloWorldTopology {
 		TopologyBuilder builder = new TopologyBuilder();
 
 		builder.setSpout("randomHelloWorld", new HelloWorldSpout(), 10);
-		builder.setBolt("HelloWorldBolt", new HelloWorldBolt(), 2).shuffleGrouping("randomHelloWorld");
+		builder.setBolt("HelloWorldBolt", new HelloWorldBolt(), 3).shuffleGrouping("randomHelloWorld");
 		Config conf = new Config();
 		conf.setDebug(true);
 
 		try {
 			
 			if (args != null && args.length > 0) {
-				conf.setNumWorkers(3);
+				conf.setNumWorkers(1);
 				StormSubmitter.submitTopology(args[0], conf, builder.createTopology());
 			} else {
 				LocalCluster cluster = new LocalCluster();
