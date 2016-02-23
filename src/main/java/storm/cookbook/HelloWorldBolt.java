@@ -11,19 +11,22 @@ import backtype.storm.tuple.Tuple;
 public class HelloWorldBolt extends BaseRichBolt {
 
 	private int myCount = 0;
-	private Tuple input;
-	public void execute(Tuple arg0) {
+
+	public void execute(Tuple input) {
 		String test = input.getStringByField("sentence");
 		if ("Hello World".equals(test)) {
 			myCount++;
-			System.out.println("Find a Hello World! My Count is now:" + myCount);
+			System.out.println("////////////////////////////" + this.hashCode() + "Find a Hello World! My Count is now:" + myCount);
 		}
 	}
 
+	@Override
 	public void prepare(Map arg0, TopologyContext arg1, OutputCollector arg2) {
+		// TODO Auto-generated method stub
 
 	}
 
+	@Override
 	public void declareOutputFields(OutputFieldsDeclarer arg0) {
 		// TODO Auto-generated method stub
 
